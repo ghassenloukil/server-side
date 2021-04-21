@@ -17,33 +17,3 @@ module.exports = (sequelize) => {
       }
     });
   };
-
-
-//   const bcrypt = require("bcrypt");
-
-// module.exports = function(sequelize) {
-//     const User = sequelize.define('users', {
-//       id: {
-//         type: DataType.INTEGER,
-//         primaryKey: true,
-//         autoIncrement: true
-//         },  
-//       username: {
-//           type: DataType.STRING
-//         },
-//         email: DataType.STRING,
-//         password: DataType.STRING,
-//     }, {
-//         freezeTableName: true,
-//         instanceMethods: {
-//             generateHash(password) {
-//                 return bcrypt.hash(password, bcrypt.genSaltSync(8));
-//             },
-//             validPassword(password) {
-//                 return bcrypt.compare(password, this.password);
-//             }
-//         }
-//     });
-
-//     return User;
-// }
