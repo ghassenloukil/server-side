@@ -111,6 +111,30 @@ module.exports.createUser = async (req, res)=>{
     }
 }
 
+
+
+module.exports.findUser = async (req, res) => {
+    
+    try {
+        const user = await Users.findOne({ where: {email: req.body.email} });
+        if (!user) {
+          console.log("user not found");
+        }
+        if (await bcrypt.compare(req.body.password, user.password)) {
+          // create and assign a token
+          const token = jwt.sign({ _id: user._id }, "fghfghrtfjyuuikyufiy");
+          res.header("auth-token", token);
+          res.send({ message: "success", token: token });
+        } else {
+          res.send("Email or password incorrect");
+        }
+      } catch (err) {
+        res.send(err);
+      }
+    }
+
+
+
 module.exports.getUsers = async (req, res)=>{
     try {
         const Allusers = await Users.findAll();
