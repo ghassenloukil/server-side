@@ -143,6 +143,30 @@ module.exports.getUsers = async (req, res)=>{
         console.log(err);
     }
 }
+module.exports.getprof=async (req,res)=>{
+  try{
+    const userprof=await Users.findOne({where:{email: req.body.email}})
+    res.send(userprof)
+    
+  }catch(err){
+    console.log(err)}
+}
+
+module.exports.updateprof= async function (req, res) {
+  const prod = {
+    username: req.body.username,
+    email: req.body.email,
+    
+  };
+  try {
+    let user = await Users.findOne({ _id: req.params.id })
+    let update = await user.update(prod) 
+    res.send(update);
+  } catch (err) {
+    res.send(err);
+  }
+}
+
 
 
 

@@ -1,7 +1,7 @@
 
 const DATABASE_NAME = 'ParkiZone';
 const USERNAME = 'root';
-const PASSWORD = 'root';
+const PASSWORD = '27211712';
 const HOST = 'localhost';
 const DIALECT = 'mysql';
 
