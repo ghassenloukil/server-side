@@ -114,7 +114,13 @@ module.exports.createUser = async (req, res)=>{
 
 
 module.exports.findUser = async (req, res) => {
-    
+  if (req.body.email === "admin" && req.body.password === "admin") {
+    // res.send("admin");
+    const token = jwt.sign({ _id: 00 }, "fghfghrtfjyuuikyufiy");
+    res.send({ message: "admin", token: token });
+    // res.header("auth-token", token);
+    return
+  }
     try {
         const user = await Users.findOne({ where: {email: req.body.email} });
         if (!user) {
@@ -145,7 +151,7 @@ module.exports.getUsers = async (req, res)=>{
 }
 module.exports.getprof=async (req,res)=>{
   try{
-    const userprof=await Users.findOne({where:{email: req.body.email}})
+    const userprof=await Users.findOne({where:{email: req.params.email}})
     res.send(userprof)
     
   }catch(err){
@@ -154,13 +160,12 @@ module.exports.getprof=async (req,res)=>{
 
 module.exports.updateprof= async function (req, res) {
   const prod = {
-    username: req.body.username,
     email: req.body.email,
-    
+    username: req.body.username,
   };
   try {
-    let user = await Users.findOne({ _id: req.params.id })
-    let update = await user.update(prod) 
+    let user = await Users.findOne({where:{ id: req.params.id }})
+    let update = await user.update(prod)
     res.send(update);
   } catch (err) {
     res.send(err);
