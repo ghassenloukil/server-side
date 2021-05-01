@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS parkizone;
+DROP DATABASE IF EXISTS ParkiZone;
 
-CREATE DATABASE parkizone;
+CREATE DATABASE ParkiZone;
 
-USE parkizone;
+USE ParkiZone;
 
 CREATE TABLE user (
     id int NOT NULL AUTO_INCREMENT,
