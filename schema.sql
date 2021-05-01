@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS parki;
+DROP DATABASE IF EXISTS parkizone;
 
-CREATE DATABASE parki;
+CREATE DATABASE parkizone;
 
-USE parki;
+USE parkizone;
 
 CREATE TABLE user (
     id int NOT NULL AUTO_INCREMENT,
