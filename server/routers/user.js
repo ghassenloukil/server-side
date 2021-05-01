@@ -24,8 +24,8 @@ router.post('/sendemail',(req,res,next)=>{
     const auth = {
         
         auth: {
-          api_key: "09f903d6357ac04a09359c7a49255766-4b1aa784-32dd756f",
-          domain: "sandbox678d878f7e784890a6bfab346b57530f.mailgun.org"
+          api_key: "f0a9606f1bdd1f1ac7dd17a7024f8ec3-4b1aa784-b790fe6f",
+          domain: "sandbox3ea2588c717344008700cdb3315efdcc.mailgun.org"
         }}
   
     var transporter = nodemailer.createTransport(mailGun(auth));
