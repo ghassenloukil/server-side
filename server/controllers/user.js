@@ -100,9 +100,9 @@ module.exports.createUser = async (req, res)=>{
   const newUser = await Users.create({ 
       username: req.body.username,
       email: req.body.email,
-      password: hash
+      password: hash,
+      points: 0
   });
-//   console.log(hash);
     try {
         const saveUser = await newUser.save();
         console.log();
@@ -201,8 +201,15 @@ const auth = {
 module.exports.sendMail = sendMail;
 
 
-
-
+module.exports.deleteUser = async (req, res) => {
+  try {
+    const user = await Users.findOne({ where: {id: req.params.id} })
+   user.destroy();
+   res.send('deleted')
+  }catch (err) {
+    res.send(err)
+  }
+}
 
 
 
