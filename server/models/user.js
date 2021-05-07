@@ -14,6 +14,9 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataType.STRING
+      }?
+      points: {
+        type:DataType.INTEGER
       }
     });
   };
