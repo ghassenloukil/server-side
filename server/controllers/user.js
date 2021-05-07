@@ -84,11 +84,15 @@
 //             }
 const nodemailer = require('nodemailer');
 const mg  = require('nodemailer-mailgun-transport');
-
-const Users =require('../database/index')
+const { sequelize } = require('../database/order') 
+const Users =require('../database/user')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const db = require('../models/index.js')
+// const Order = db.Order
 
+
+// const order= db.Order
 module.exports.createUser = async (req, res)=>{
     //CHECK IF THE USER IS ALREADY IN THE DATABASE
   const emailExist = await Users.findOne({ where: {email: req.body.email} });
@@ -144,12 +148,16 @@ module.exports.findUser = async (req, res) => {
 
 module.exports.getUsers = async (req, res)=>{
     try {
-        const Allusers = await Users.findAll();
-        res.send(Allusers);
+        // const Allusers = await Users.findAll({include: [{model: db.Order}]});
+        // res.send(Allusers);
+      const user = await sequelize.query("select * from order u inner join users o on u.user_id = o.userId")
+      console.log(user);
     }catch (err) {
         console.log(err);
     }
 }
+
+
 module.exports.getprof=async (req,res)=>{
   try{
     const userprof=await Users.findOne({where:{email: req.params.email}})
