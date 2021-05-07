@@ -82,7 +82,8 @@
                   
 //            }
 //             }
-
+const nodemailer = require('nodemailer');
+const mg  = require('nodemailer-mailgun-transport');
 
 const Users =require('../database/index')
 const bcrypt = require("bcrypt");
@@ -99,9 +100,9 @@ module.exports.createUser = async (req, res)=>{
   const newUser = await Users.create({ 
       username: req.body.username,
       email: req.body.email,
-      password: hash
+      password: hash,
+      points: 0
   });
-//   console.log(hash);
     try {
         const saveUser = await newUser.save();
         console.log();
@@ -173,8 +174,42 @@ module.exports.updateprof= async function (req, res) {
 }
 
 
+const auth = {
+    auth: {
+      api_key: "09f903d6357ac04a09359c7a49255766-4b1aa784-32dd756f",
+      domain: "sandbox678d878f7e784890a6bfab346b57530f.mailgun.org"
+    }
+    
+  }
+  const nodemailerMailgun = nodemailer.createTransport(mg(auth));
+  const sendMail = (email, subject, message, cb) =>{
+    const mailOptions = {
+        from: email,
+        to: 'dhia12aouichaoui@gmail.com',
+        subject,
+        text: message
+    };
+  nodemailerMailgun.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(`Error: ${err}`);
+    }
+    else {
+      console.log(`Response: ${info}`);
+    }
+ } )}
+
+module.exports.sendMail = sendMail;
 
 
+module.exports.deleteUser = async (req, res) => {
+  try {
+    const user = await Users.findOne({ where: {id: req.params.id} })
+   user.destroy();
+   res.send('deleted')
+  }catch (err) {
+    res.send(err)
+  }
+}
 
 
 
