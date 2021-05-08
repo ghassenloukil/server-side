@@ -150,13 +150,30 @@ module.exports.getUsers = async (req, res)=>{
     try {
         // const Allusers = await Users.findAll({include: [{model: db.Order}]});
         // res.send(Allusers);
-      const user = await sequelize.query("select * from order u inner join users o on u.user_id = o.userId")
-      console.log(user);
+      const user = await sequelize.query("select * from orders u inner join users o on u.user_id = o.userId")
+      res.send(user);
     }catch (err) {
         console.log(err);
     }
 }
 
+module.exports.AllUsers = async (req, res)=>{
+  try {
+      const Allusers = await Users.findAll();
+      res.send(Allusers);
+  }catch (err) {
+      console.log(err);
+  }
+}
+
+module.exports.getOneUsers = async (req, res)=>{
+  try {
+      const user = await Users.findAll({where : {email : req.params.email}});
+      res.send(user);
+  }catch (err) {
+      console.log(err);
+  }
+}
 
 module.exports.getprof=async (req,res)=>{
   try{
@@ -211,9 +228,10 @@ module.exports.sendMail = sendMail;
 
 module.exports.deleteUser = async (req, res) => {
   try {
-    const user = await Users.findOne({ where: {id: req.params.id} })
-   user.destroy();
-   res.send('deleted')
+    const user = await Users.findOne({ where: {userId: req.params.userId} })
+    console.log("delete user", user);
+  //  user.destroy();
+  //  res.send('deleted')
   }catch (err) {
     res.send(err)
   }

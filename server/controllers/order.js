@@ -14,3 +14,14 @@ module.exports.createOrder = async (req, res)=>{
             console.log(err);
         }
 }
+
+
+module.exports.getOrders = async (req, res)=>{
+    try {
+        const AllOrders = await Order.findAll();
+        res.send(AllOrders);
+      
+    }catch (err) {
+        console.log(err);
+    }
+}

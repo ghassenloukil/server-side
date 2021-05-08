@@ -13,7 +13,8 @@ router.post('/login', controllers.findUser);
 router.get('/Profile/:email', controllers.getprof)
 router.put('/Profile/:id',controllers.updateprof);
 router.delete('/delete/:id', controllers.deleteUser)
-       
+router.get('/user/:email', controllers.getOneUsers) 
+router.get('/allusers', controllers.AllUsers);
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1;
 router.post('/sendemail',(req,res,next)=>{
