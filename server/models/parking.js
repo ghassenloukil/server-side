@@ -1,6 +1,6 @@
 const DataType = require('sequelize/lib/data-types')
 module.exports = (sequelize) => {
-    return sequelize.define("parkings", {
+    const Park = sequelize.define("parkings", {
     parkingId: {
       type: DataType.INTEGER,
       primaryKey: true,
@@ -31,4 +31,5 @@ module.exports = (sequelize) => {
         type: DataType.DECIMAL(10, 4)
       }
     });
+    return Park
   };

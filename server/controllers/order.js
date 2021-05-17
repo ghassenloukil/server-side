@@ -4,7 +4,8 @@ module.exports.createOrder = async (req, res)=>{
     const newOrder = await Order.create({ 
         date: req.body.date,
         hour: req.body.hour,
-        user_id: req.body.user_id
+        user_id: req.body.user_id,
+        parking_id: req.body.parking_id
       });
         try {
             const saveOrder = await newOrder.save();

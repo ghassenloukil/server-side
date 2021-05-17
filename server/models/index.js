@@ -18,5 +18,7 @@ db.user = require ("./user")(sequelize, Sequelize)
 
 db.user.hasMany(db.order);
 db.order.belongsTo(db.user);
+db.parking.hasMany(db.order);
+db.order.belongsTo(db.parking);
 
 module.export = db

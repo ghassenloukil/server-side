@@ -11,6 +11,11 @@ module.exports = (sequelize) => {
       foreignKey: true,
       allowNull: false
     },
+    parking_id:{
+      type: DataType.INTEGER,
+      foreignKey: true,
+      allowNull: false
+    },
       date: {
         type: DataType.STRING
       },
@@ -19,7 +24,7 @@ module.exports = (sequelize) => {
       }
     });
     Order.associate = models => {
-        Order.belongsTo(models.User, {
+        Order.belongsTo(models.User,models.Park, {
             foreignKey:{
                 allowNull: false
             }
