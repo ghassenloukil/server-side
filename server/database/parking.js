@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const order = require('../models/order')
+const parking = require('../models/parking')
 
 const config = require('./config')
 
@@ -11,11 +11,11 @@ const sequelize = new Sequelize( config.DATABASE_NAME, config.USERNAME, config.P
 })
 
 
-const Order = order(sequelize, Sequelize)
-console.log("hello from orders",Order);
+const Parkings = parking(sequelize, Sequelize)
+console.log("hello from parking",Parkings);
 
 sequelize.sync({ force: false}).then(() => {
-    console.log('your table orders is there');
+    console.log('your table Parkings is there');
 })
 
-module.exports = {Order, sequelize}
+module.exports = Parkings

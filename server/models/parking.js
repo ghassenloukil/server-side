@@ -1,7 +1,7 @@
 const DataType = require('sequelize/lib/data-types')
 module.exports = (sequelize) => {
-    return sequelize.define("order", {
-    id: {
+    return sequelize.define("parkings", {
+    parkingId: {
       type: DataType.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -9,12 +9,12 @@ module.exports = (sequelize) => {
     parkname: {
         type: DataType.STRING
       },
-      date: {
-        type: DataType.STRING
-      },
-      hour: {
-        type: DataType.STRING
-      },
+      // date: {
+      //   type: DataType.STRING
+      // },
+      // hour: {
+      //   type: DataType.STRING
+      // },
       totalPlaces: {
         type: DataType.INTEGER
       },

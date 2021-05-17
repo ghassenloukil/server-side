@@ -1,13 +1,10 @@
-const Orders =require('../database/order')
+const {Order} =require('../database/order')
 
 module.exports.createOrder = async (req, res)=>{
-    const newOrder = await Orders.create({ 
-        parkname: req.body.parkname,
-        price: req.body.price,
-        long: req.body.long,
-        latit: req.body.latit,
-        totalPlaces: req.body.totalPlaces,
-        emptyPlaces: req.body.emptyPlaces,  
+    const newOrder = await Order.create({ 
+        date: req.body.date,
+        hour: req.body.hour,
+        user_id: req.body.user_id
       });
         try {
             const saveOrder = await newOrder.save();
@@ -18,10 +15,12 @@ module.exports.createOrder = async (req, res)=>{
         }
 }
 
+
 module.exports.getOrders = async (req, res)=>{
     try {
-        const AllOrders = await Orders.findAll();
+        const AllOrders = await Order.findAll();
         res.send(AllOrders);
+      
     }catch (err) {
         console.log(err);
     }

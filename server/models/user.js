@@ -1,7 +1,7 @@
 const DataType = require('sequelize/lib/data-types')
 module.exports = (sequelize) => {
-    return sequelize.define("users", {
-    id: {
+    const User = sequelize.define("users", {
+    userId: {
       type: DataType.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -19,4 +19,11 @@ module.exports = (sequelize) => {
         type: DataType.INTEGER
       }
     });
+    User.associate = models => {
+      User.hasMany(models.Order, {
+        onDelete: "cascade",
+        as: 'order'
+      });
+    }
+    return User
   };
