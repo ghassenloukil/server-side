@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
-const user = require('../models/user')
-
+const order = require('../models/orders')
 
 const config = require('./config')
 
@@ -11,13 +10,12 @@ const sequelize = new Sequelize( config.DATABASE_NAME, config.USERNAME, config.P
     dialectOptions: {connectTimeout: 1000}
 })
 
-const Users = user(sequelize, Sequelize)
-console.log("hello from user",Users);
 
-
+const Orders = order(sequelize, Sequelize)
+console.log("hello from order",Orders);
 
 sequelize.sync({ force: false}).then(() => {
     console.log('your table users is there');
 })
 
-module.exports = Users
+module.exports = Orders

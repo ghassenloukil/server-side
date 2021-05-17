@@ -12,7 +12,7 @@ router.get('/users', controllers.getUsers);
 router.post('/login', controllers.findUser);
 router.get('/Profile/:email', controllers.getprof)
 router.put('/Profile/:id',controllers.updateprof);
-
+router.delete('/delete/:id', controllers.deleteUser)
        
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1;
@@ -24,8 +24,8 @@ router.post('/sendemail',(req,res,next)=>{
     const auth = {
         
         auth: {
-          api_key: "f0a9606f1bdd1f1ac7dd17a7024f8ec3-4b1aa784-b790fe6f",
-          domain: "sandbox3ea2588c717344008700cdb3315efdcc.mailgun.org"
+          api_key: "8a61a5ea3ba5ba86d592900791ac183f-4b1aa784-42a46913",
+          domain: "sandbox58b0c13a1266421ead557040893c7e49.mailgun.org"
         }}
   
     var transporter = nodemailer.createTransport(mailGun(auth));
@@ -33,7 +33,7 @@ router.post('/sendemail',(req,res,next)=>{
    
     var mailOptions = {
     from: data.email,
-    to: 'dhia12aouichaoui@gmail.com',
+    to: 'dalihili69@gmail.com',
     subject: `Contact name: ${data.name} ,${data.subject}`,
     text: `${data.message}`
     };
